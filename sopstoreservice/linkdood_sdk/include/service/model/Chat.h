@@ -47,6 +47,7 @@ public:
 	std::string whereFrom;///< 消息来源 在群的时候有用 
 	std::string lastMsg;  ///<最后一条消息
 	std::string msgProp;  ///<消息属性
+	int64  sendUserId;    ///< 发送者Id
 };
 
 } /*namespace model */

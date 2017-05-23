@@ -250,12 +250,13 @@ void LinkDoodService::queryAppStore(QString json)
     }else if(type == 1){
         appStoreQueryParam.userId = mpAuthService->userId();
     }else if(type == 8){
-        stic.userID = QString::number(mpAuthService->userId()).toStdString();
-        stic.appType = obj.value("appType").toString().toStdString();
-        stic.appID = obj.value("appID").toString().toStdString();
-        stic.orgID = obj.value("orgID").toString().toStdString();
-        stic.orgCode = obj.value("orgCode").toString().toStdString();
-        stic.unitID = obj.value("unitID").toString().toStdString();
+        stic.userID = (QString::number(mpAuthService->userId())).toStdString();
+        stic.appType =(obj.value("appType").toString()).toStdString();
+        stic.appID = (obj.value("appID").toString()).toStdString();
+        stic.orgID = (obj.value("orgID").toString()).toStdString();
+        stic.orgCode =(obj.value("orgCode").toString()).toStdString();
+        stic.unitID = (obj.value("unitID").toString()).toStdString();
+        qDebug()<<Q_FUNC_INFO<<"dd:"<<stic.userID.c_str()<<","<<stic.appType.c_str()<<","<<stic.appID.c_str()<<","<<stic.orgID.c_str()<<","<<stic.orgCode.c_str()<<","<<stic.unitID.c_str();
     }
     mpSopService->queryAppStore(type,appStoreQueryParam,appRelation,value,stic);
 }
@@ -522,6 +523,7 @@ void LinkDoodService::handleRespAppStore(respAppStore resp,int type)
     QJsonObject statResult;
     statResult.insert("msg",resp.statResult.msg.data());
     statResult.insert("code",resp.statResult.code.data());
+    obj.insert("statResult",statResult);
 
     doc.setObject(obj);
     QString strJson = doc.toJson();

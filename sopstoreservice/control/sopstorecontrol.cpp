@@ -37,6 +37,7 @@ void SopStoreControl::queryAppStore(int8 type, model::AppStoreQueryParam appStor
 
 void SopStoreControl::_queryAppStore(service::ErrorInfo code, model::respAppStore response,int reqType)
 {
+    qDebug()<<Q_FUNC_INFO<<"code:"<<code<<","<<response.statResult.code.c_str()<<","<<response.statResult.msg.c_str();
     emit signalsQueryAppStore(response,reqType);
 }
 

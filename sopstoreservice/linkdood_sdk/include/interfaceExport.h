@@ -424,6 +424,7 @@ enum eDataType
 	eEntUser,			///< 企业成员
 	eGroup,				///< 群组
 	eGroupMember,		///< 群成员
+	eGroupFile,			///< 群文件表
 	eGroupMemTsp,		///< 群成员时间戳
 	eFileInfo,			///< 文件信息
 	eFileTsp,			///< 文件时间戳

@@ -203,11 +203,11 @@ public:
 
 	
 	std::string channelID;
-	std::string isSipChat;
+	std::string isSipChat;//1,音频 4，视频 5，p2p  (只适用单点和p2p)
 	std::string videoType;
 	std::string videostatus;
 	std::string key;
-	std::string version;
+	std::string version;//没值的是 单点音视频 或者 p2p; 有值  "rtc@1.0.0"  ///rtc协议版本  "agora@1.0.0" ///声网协议版本
 };
 ///位置消息
 class MsgPosition : public Msg

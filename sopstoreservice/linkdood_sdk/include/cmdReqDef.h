@@ -2284,9 +2284,12 @@ namespace imsdk
 	*/
 	struct req_agoraFunc : public _sdkcmd_base
 	{
+		req_agoraFunc() :channelID(0), chatTime(0), type(0){}
 		///channelID
 		int64   channelID;
-		int8    type;///1,认证 2.呼叫 3.接听 4.重新申请subKey
+		int64   chatTime;/// 通话时间 type = 5时 填
+		int64   uuid;///声网id type = 6时 填
+		int8    type;///1,认证 2.呼叫 3.接听 4.重新申请subKey,5.outChat,6,updataID
 		CMD_SIZE();
 	};
 }

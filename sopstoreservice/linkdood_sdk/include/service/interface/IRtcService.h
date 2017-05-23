@@ -60,11 +60,13 @@ namespace service{
 		virtual void getStunServer(std::function<void(ErrorInfo, p2pServerInfo&)> cb) = 0;
 		/*
 		* AGORA声网相关服务接口
-		* @param type ///1,认证 2.呼叫 3.接听 4.重新申请subKey
+		* @param type ///1,认证 2.呼叫 3.接听 4.重新申请subKey,5.outChat,6,updataID
 		* @param channnelID ///channelID
+		* @param chatTime /// 通话时间 type = 5时 填
+		* @param uuid ///声网id type = 6时 填
 		* @rerurn  subkey vendorKey
 		*/
-		virtual void getAgoraFunc(int8 type,int64 channnelID,std::function<void(ErrorInfo,int,std::string&,std::string&)> cb) = 0;
+		virtual void getAgoraFunc(int8 type, int64 channnelID, int64 chatTime, int64 uuid, std::function<void(ErrorInfo, int, std::string&, std::string&)> cb) = 0;
 
 	};
 

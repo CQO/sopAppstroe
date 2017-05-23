@@ -37,7 +37,7 @@ void SopStoreClinet::slidesshow(QString json)
 
 void SopStoreClinet::queryAppStore(QString json)
 {
-    qDebug()<<Q_FUNC_INFO;
+    qDebug()<<Q_FUNC_INFO<<"param:"<<json;
     GET_DATA_PARAMS(queryAppStore,json);
 }
 

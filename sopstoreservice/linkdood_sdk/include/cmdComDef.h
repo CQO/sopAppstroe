@@ -393,6 +393,7 @@ struct resp_commonResult : public _sdkrespcmd_base
 		std::string msgProp;    ///< 消息属性
 		std::string sourceID ;  ///< 消息附加源
 		int64       lastAtMsgID; ///< 最后一条@你的消息,如果为零，则标识@的消息已读
+		int64       sendUserID;  ///< 发送者ID
 	}; 
 
 	/**
@@ -466,6 +467,8 @@ struct resp_commonResult : public _sdkrespcmd_base
 			INIT_ISSET(pinyin)
 			INIT_ISSET(status)
 			INIT_ISSET(srvName)
+			INIT_ISSET(area)
+			INIT_ISSET(birthday)
 		}
 
 		void init()
@@ -480,6 +483,8 @@ struct resp_commonResult : public _sdkrespcmd_base
 			INIT_ISSET(pinyin)
 			INIT_ISSET(status)
 			INIT_ISSET(srvName)
+			INIT_ISSET(area)
+			INIT_ISSET(birthday)
 		}
 
 		int64 userid;			///< 用户ID 	    userid.
@@ -518,6 +523,10 @@ struct resp_commonResult : public _sdkrespcmd_base
 		IS_SET(std::string, status)
 		///服务器名称
 		IS_SET(std::string, srvName)	
+		///地区
+		IS_SET(std::string, area)
+		///生日
+		IS_SET(int64, birthday)
 	};
 
 	/**
