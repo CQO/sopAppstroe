@@ -33,6 +33,16 @@ void sopstoreui_Workspace::uninstall(QString params)
 
 void sopstoreui_Workspace::openApp(QString url)
 {
+    if(url.contains("browser:")){
+        CProcessManager proMgr;
+        QList<int> pids = proMgr.processList();
+        for(auto i : pids){
+            if(proMgr.sopidByPid(i) == "com.syberos.browser"){
+                proMgr.killProcessByPid(i);
+                break;
+            }
+        }
+    }
     qApp->openUrl(url);
 }
 

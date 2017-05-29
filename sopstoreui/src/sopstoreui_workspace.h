@@ -12,7 +12,7 @@
 #include <SyberosServiceCache>
 #include <SyberosGuiCache>
 #include <cgui_application.h>
-
+#include "cprocessmanager.h"
 
 #include "cpackageinfo.h"
 #include "csystempackagemanager.h"
