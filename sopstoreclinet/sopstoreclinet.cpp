@@ -112,7 +112,7 @@ void SopStoreClinet::getAppLoginStatus()
 
 void SopStoreClinet::onRefreshData(QString json)
 {
-   jsonParce(json,"refreshData");
+   emit refreshData(json);
 }
 
 void SopStoreClinet::onLoginResult(QString json)
