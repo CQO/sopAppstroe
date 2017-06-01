@@ -33,10 +33,12 @@ public:
     QUrl    appUrl();
     sopstoreui_Workspace();
     virtual ~sopstoreui_Workspace();
+    void onActive();
     void onLaunchComplete(Option option, const QStringList& params);
 
 signals:
     void appUrlChanged();
+    void refreshData();
 public slots:
     void onInstallStatusChanged(const QString& sopid,
                                 const QString& pkgPath,
@@ -46,5 +48,6 @@ public slots:
 private:
     QQuickView *m_view;
     QSharedPointer<CSystemPackageManager> mSysPkgMgr;
+    bool       mNeedNoticeRefreshData;
 };
 #endif //__SOPSTOREUI_WORKSPACE__

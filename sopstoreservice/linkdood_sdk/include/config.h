@@ -108,7 +108,8 @@ enum enLogModel
 	enlogm_ga,  ///< 公安插件
 	enlogm_av,  ///< 音视频插件
     enlogm_rtc,  ///<多点音视频
-	enlogm_sopstore  ///<sopstore插件
+	enlogm_sopstore,  ///<sopstore插件
+    enlogm_external,  ///外部模块, 安卓 ios ,pc等平台输出的日志
 };
 
 static const char *LogTagAuth = "auth";				///< 认证

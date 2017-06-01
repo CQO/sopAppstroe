@@ -20,7 +20,7 @@ namespace model
 class Chat : public User 
 {
 public:
-	Chat() :msgType(0), chatType(0), operType(0), subType(0), unreadCount(0), lastMsgId(0), msgTime(0), msgRemindMode(0), lastAtMsgID(0), realUnReadCnt(0)
+	Chat() :msgType(0), chatType(0), operType(0), subType(0), unreadCount(0), lastMsgId(0), msgTime(0), msgRemindMode(0), lastAtMsgID(0), realUnReadCnt(0), sendUserId(0)
 	{
 	}
 	void init(){}

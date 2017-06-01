@@ -262,19 +262,46 @@ struct OrgUserinfo
 */
 struct  EntAppinfo
 {
-	std::string appSign;///<应用标识
-	std::string appName;///<应用名称
-	std::string appIcon;///<应用图标
-	int64 appID;        ///<应用ID
-	std::string appHomeUrl;///<应用主页
-	int64 entID;           ///<entID
-	std::string entName;   ///<应用名称
-	std::map<std::string, std::string>  configItems; ///<客户端配置
-	std::string appSecret; ///<应用密钥
-	std::string appToken;  ///<应用TOKEN
-	std::string appMenus;  ///<应用菜单
-	int8	openIDEncoded; ///<openID是否编码，0:不编码，1:编码
-	std::string subAccount;///<应用子账号
+	std::string appSign;///< 应用标识
+	std::string appName;///< 应用名称
+	std::string appIcon;///< 应用图标
+	std::string appIconUrl; ///服务器应用图标全路径
+	int64 appID;        ///< 应用ID
+	std::string appHomeUrl;///< 应用主页
+	int64 entID;           ///< entID
+	std::string entName;   ///< 应用名称
+	std::map<std::string, std::string>  configItems; ///< 客户端配置
+	std::string appSecret; ///< 应用密钥
+	std::string appToken;  ///< 应用TOKEN
+	std::string appMenus;  ///< 应用菜单
+	int8	openIDEncoded; ///< openID是否编码，0:不编码，1:编码
+	std::string subAccount;///< 应用子账号
+	///子类型  1 H5应用，2 移动应用
+	int8 appSubType;
+	///推荐 1 是 ，2 否
+	int8 recommend;
+	/// 默认安装 1 是 ，2 否
+	int8 defaultInstall;
+	///扩展字段 json 格式，mainUrl H5首页，adminUrl 后台管理地址，myUrl 个人中心地址
+	std::string extend;
+	///设备类型 1(iPhone_E), 2(iPad_E), 3(iPhone), 4(iPad), 5(androidPhone), 6(androidPad)
+	std::string deviceTypes;
+	///消息历史地址
+	std::string messageHistoryUrl;
+	///是否启用自定义菜单   1 启用  0停用
+	std::string menuOpen;
+	///是否启用自定义菜单响应事件  1启用 0停用
+	std::string replyMenuOpen;
+	///智能开关 2
+	int8 appType;
+	///公众号状态
+	int8 status;
+	///1:订阅号2：企业号
+	int8 subOrAppType;
+	///应用功能介绍
+	std::string appFunctintroduce;
+	///公众号介绍
+	std::string appDescription;
 };
 
 struct SearchResult
@@ -463,5 +490,21 @@ struct SubServerInfo
 	 BadWord() : badWordType(0){}
 	 int8 badWordType;     ///< 0不过滤 1使用*号 2禁止发送
 	 std::vector<std::string> badWordList;   ///< 敏感词列表
+ };
+ struct reqEntAppInfo{
+	 reqEntAppInfo() :pageNum(0), pageSize(0), status(0), userID(0), entID(0){}
+	 int32 pageNum;          ///< 页码
+	 int32 pageSize;         ///< 每页大小
+	 int8 status;            ///< 状态
+	 int64 userID;           ///< 登录用户id
+	 Optional<int64> entID;   ///< 企业ID，本身获取不到entID,入参为0即可
+ };
+
+ struct oauthReq{
+	 std::string appID;            ///< 应用ID
+	 std::string userID;           ///< 用户ID
+	 std::string accountType;      ///< 账户类型
+	 Optional< std::string> account; ///< 账户
+	 Optional< std::string> password;///< 密码
  };
 } /*namespace service*/

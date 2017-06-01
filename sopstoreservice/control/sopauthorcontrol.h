@@ -13,7 +13,7 @@ public:
     void  logout();
     void  changePassword(QString oldPwd,QString newPwd);
     void _changePassword(service::ErrorInfo code);
-    void _login(service::ErrorInfo code, int64 userId, const std::string veryImg);
+    void _login(service::ErrorInfo code, int64 userId,int64 time, const std::string veryImg);
     void _logout(service::ErrorInfo code);
 
     void _msgNoticeCb(std::shared_ptr<Msg>msg);

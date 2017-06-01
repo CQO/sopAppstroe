@@ -721,6 +721,32 @@ struct resp_commonResult : public _sdkrespcmd_base
 		std::string appMenus;  ///< 应用菜单
 		int8	openIDEncoded; ///< openID是否编码，0:不编码，1:编码
 		std::string subAccount;///< 应用子账号
+		///子类型  1 H5应用，2 移动应用
+		int8 appSubType;
+		///推荐 1 是 ，2 否
+		int8 recommend;
+		/// 默认安装 1 是 ，2 否
+		int8 defaultInstall;
+		///扩展字段 json 格式，mainUrl H5首页，adminUrl 后台管理地址，myUrl 个人中心地址
+		std::string extend;
+		///设备类型 1(iPhone_E), 2(iPad_E), 3(iPhone), 4(iPad), 5(androidPhone), 6(androidPad)
+		std::string deviceTypes;
+		///消息历史地址
+		std::string messageHistoryUrl;
+		///是否启用自定义菜单   1 启用  0停用
+		std::string menuOpen;
+		///是否启用自定义菜单响应事件  1启用 0停用
+		std::string replyMenuOpen;
+		///智能开关 2
+		int8 appType;
+		///公众号状态
+		int8 status;
+		///1:订阅号2：企业号
+		int8 subOrAppType;
+		///应用功能介绍
+		std::string appFunctintroduce;
+		///公众号介绍
+		std::string appDescription;
 	};
 
 	/**
@@ -1035,7 +1061,34 @@ struct resp_commonResult : public _sdkrespcmd_base
 		std::string appToken;
 		std::string appMenus;  ///应用菜单
 		int8	openIDEncoded; ///openID是否编码，0:不编码，1:编码
-		std::string subAccount;///应用子账号
+		std::string subAccount;///机器人子账户列表 json格式数据
+
+		///子类型  1 H5应用，2 移动应用
+		int8 appSubType;
+		///推荐 1 是 ，2 否
+		int8 recommend;
+		/// 默认安装 1 是 ，2 否
+		int8 defaultInstall;
+		///扩展字段 json 格式，mainUrl H5首页，adminUrl 后台管理地址，myUrl 个人中心地址
+		std::string extend;
+		///设备类型 1(iPhone_E), 2(iPad_E), 3(iPhone), 4(iPad), 5(androidPhone), 6(androidPad)
+		std::string deviceTypes;
+		///消息历史地址
+		std::string messageHistoryUrl;
+		///是否启用自定义菜单   1 启用  0停用
+		std::string menuOpen;
+		///是否启用自定义菜单响应事件  1启用 0停用
+		std::string replyMenuOpen;
+		///智能开关 2
+		int8 appType;
+		///公众号状态
+		int8 status;
+		///1:订阅号2：企业号
+		int8 subOrAppType;
+		///应用功能介绍
+		std::string appFunctintroduce;
+		///公众号介绍
+		std::string appDescription;
 	};
 
 	///本地配置条目
@@ -1176,6 +1229,7 @@ struct resp_commonResult : public _sdkrespcmd_base
 		std::string extend;            ///< 扩展字段
 		std::string activityName;      ///< activity
 	};
+
 	///应用市场分页查询结果
 	struct st_smallMarketAppPage
 	{

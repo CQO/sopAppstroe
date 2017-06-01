@@ -34,14 +34,7 @@ void sopstoreui_Workspace::uninstall(QString params)
 void sopstoreui_Workspace::openApp(QString url)
 {
     if(url.contains("browser:")){
-        CProcessManager proMgr;
-        QList<int> pids = proMgr.processList();
-        for(auto i : pids){
-            if(proMgr.sopidByPid(i) == "com.syberos.browser"){
-                proMgr.killProcessByPid(i);
-                break;
-            }
-        }
+        mNeedNoticeRefreshData = true;
     }
     qApp->openUrl(url);
 }
@@ -57,6 +50,7 @@ sopstoreui_Workspace::sopstoreui_Workspace()
     : CWorkspace()
 {
 
+    mNeedNoticeRefreshData = false;
     qmlRegisterType<SopStoreClinet>("com.app.sopApp",1,0,"SopAppClient");
 
     mSysPkgMgr = QSharedPointer<CSystemPackageManager>(new CSystemPackageManager(this));
@@ -70,14 +64,28 @@ sopstoreui_Workspace::sopstoreui_Workspace()
     qApp->setAttribute(Qt::AA_SynthesizeTouchForUnhandledMouseEvents, true);
     m_view->setSource(QUrl("qrc:/qml/main.qml"));
     m_view->showFullScreen();
-
-
-
 }
 
 sopstoreui_Workspace::~sopstoreui_Workspace()
 {
     qDebug()<<Q_FUNC_INFO;
+}
+
+void sopstoreui_Workspace::onActive()
+{
+    qDebug()<<Q_FUNC_INFO<<"sssssssssssssss:onActive";
+    if(mNeedNoticeRefreshData){
+        mNeedNoticeRefreshData = false;
+        CProcessManager proMgr;
+        QList<int> pids = proMgr.processList();
+        for(auto i : pids){
+            if(proMgr.sopidByPid(i) == "com.syberos.browser"){
+                proMgr.killProcessByPid(i);
+                break;
+            }
+        }
+    }
+    emit refreshData();
 }
 
 void sopstoreui_Workspace::onLaunchComplete(Option option, const QStringList& params)

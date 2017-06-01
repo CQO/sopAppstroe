@@ -472,6 +472,7 @@ enum eFunctType
 	eGetDatas,			///< 根据条件得到一组数据
 	eGetDataBySql,		///< 根据sql语句得到一组数据
 	eGetAllDatas,		///< 得到全部数据
+    eGetMore,
 	eUpdateData,		///< 更新数据
 	eUpdateDatas,		///< 批量更新数据
 	eInsertData,		///< 插入数据
@@ -482,6 +483,9 @@ enum eFunctType
 	eDeleteDatas,		///< 根据数据结构批量删除数据
 	eDeleteDataBySql,   ///< 根据sql语句删除一组数据
 	eDeleteAll,         ///< 删除所有
+    eIsExist,           ///< 是否存在
+    eSearch,            ///< 搜索
+
 	/**************************系统消息相关*******************************/
 
 	/**

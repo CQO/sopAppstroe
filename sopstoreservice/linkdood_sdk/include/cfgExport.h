@@ -175,6 +175,13 @@ enum  {
 	///<G>设置解析消息的接口  [param]　jsonToolInterface 的指针
 	cfg_jsonToolInterface=36,
 
+	 /**
+	* \brief <U> 设置资源根路径，包括图片，文件，视频，音频路径都受影响
+	* 比如设置为/home/sharp/。 图片路径就会成为/home/sharp/{usrid}/image 
+	* userid为当时登录的用户ID
+	*/
+ 	cfg_rcRootPath = 37 ,
+
 	cfg_Export_max,      	//配置导出最大值,无特殊意义
  };
 

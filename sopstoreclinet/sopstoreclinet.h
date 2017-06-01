@@ -31,6 +31,9 @@ public:
 
     //Q_INVOKABLE bool isInstallApp(QString userId,QString appId);
 
+    Q_INVOKABLE void writeData(QString content);
+    Q_INVOKABLE QString readData();
+
     Q_INVOKABLE void downloadApp(QString pkgName,QString url);
     Q_INVOKABLE void login(QString json);
     Q_INVOKABLE void preLogin(QString json);
@@ -58,6 +61,7 @@ signals:
     void installApp(QString appPath);
     void uninstallApp(QString sopId);
 public slots:
+    void onRefreshData(QString json);
     void onGetAppLoginStatusResult(QString json);
     void onLoginResult(QString json);
     void onLoginoutResult(QString json);

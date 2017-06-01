@@ -4,6 +4,7 @@
 #include "../extModel/packet.h"
 #include "../model/Account.h"
 #include "IService.h"
+#include "../model/Packet.h"
 
 #include <functional>
 #include <memory>
@@ -23,6 +24,11 @@ namespace service{
 		*注册音视频事件回调
 		*/
 		virtual	 void regChannelEventCb(std::function <void(model::channelEvent&)> cb) = 0;
+
+		/**
+		*声网用 推送房间成员
+		*/
+		virtual	 void regRoomMemCb(std::function< void(std::shared_ptr<Msg>) > cb) = 0;
 
 		/*****************************************请求接口*******************************************/
 

@@ -13,7 +13,7 @@ SopAuthorControl::SopAuthorControl(QObject *parent) : QObject(parent)
 
 int64 SopAuthorControl::login(std::string user, std::string pwd, std::string server)
 {
-    m_pAuthorService->login(user,pwd,server,std::bind(&SopAuthorControl::_login,this,std::placeholders::_1,std::placeholders::_2,std::placeholders::_3));
+    m_pAuthorService->login(user,pwd,server,std::bind(&SopAuthorControl::_login,this,std::placeholders::_1,std::placeholders::_2,std::placeholders::_3,std::placeholders::_4));
 }
 
 void SopAuthorControl::logout()
@@ -33,7 +33,7 @@ void SopAuthorControl::_changePassword(service::ErrorInfo code)
     emit changePasswordResult(code);
 }
 
-void SopAuthorControl::_login(service::ErrorInfo code,int64 userId, const std::string veryImg)
+void SopAuthorControl::_login(service::ErrorInfo code,int64 userId,int64 time, const std::string veryImg)
 {
     qDebug()<<Q_FUNC_INFO<<"code:"<<code<<"userId:"<<userId;
     if(code == 0){

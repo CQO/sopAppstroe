@@ -1,5 +1,5 @@
 #include "sopstoreclinet.h"
-
+#include <QFileInfo>
 
 SopStoreClinet::SopStoreClinet(QObject *parent) :
     QObject(parent)
@@ -12,6 +12,27 @@ SopStoreClinet::~SopStoreClinet()
 {
     qDebug()<<Q_FUNC_INFO;
     loginout();
+}
+
+void SopStoreClinet::writeData(QString content)
+{
+   QFile file(APP_DATA_CACHE);
+   if(file.open(QIODevice::WriteOnly)){
+       file.write(content.toUtf8().data());
+       file.close();
+   }
+   jsonParce("{\"result\":true}","writeData");
+}
+
+QString SopStoreClinet::readData()
+{
+    QFile file(APP_DATA_CACHE);
+    if(file.open(QIODevice::ReadOnly)){
+       QString content = file.readAll();
+       file.close();
+       return content;
+    }
+    return "";
 }
 void SopStoreClinet::login(QString json)
 {
@@ -87,6 +108,11 @@ void SopStoreClinet::getAccountInfo()
 void SopStoreClinet::getAppLoginStatus()
 {
     GET_DATA(getAppLoginStatus);
+}
+
+void SopStoreClinet::onRefreshData(QString json)
+{
+   jsonParce(json,"refreshData");
 }
 
 void SopStoreClinet::onLoginResult(QString json)

@@ -1228,6 +1228,13 @@ enum
 	*[out] resp_agoraFunc
 	*/
 	logic_cmd_getAgoraFunc = 0xBC,
+	logic_cmd_transferMsg = 0xBD,
+	/**
+	* \brief 根据用户id分页获取企业号
+	* [in]  req_getEntAppInfo
+	* [out] resp_getEntAppInfo
+	*/
+	logic_cmd_getEntAppInfo = 0xBE,
 	logic_cmd_max
 };
 

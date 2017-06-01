@@ -116,20 +116,20 @@ public:
 	* @param[in] user 传入用户名 如果是手机账户格式为“0086158********”
 	* @param[in] pwd 传入密码
 	* @param[in] server 传入服务器地址，域名或IP均可
-	* @param[in] cb 传入接收结果回调 _1错误信息  _2用户Id _3 返回1102错误时的验证码路径
+	* @param[in] cb 传入接收结果回调 _1错误信息  _2用户Id _3 帐号被锁定剩余时长,_4 返回1102错误时的验证码路径
 	* @return	int64 返回当前执行的操作ID，用于取消该次执行
 	*/
 	virtual int64 login(const std::string& user, const std::string& pwd, const std::string& server,
-						std::function<void(ErrorInfo, int64, const std::string&)> cb) = 0;
+						std::function<void(ErrorInfo, int64,int64, const std::string&)> cb) = 0;
 
 	/**
 	* \brief 自动登录（不用填密码）
 	* @param[in] userid 传入用户ID
 	* @param[in] server 传入服务器地址，域名或IP均可
-	* @param[in] cb 传入接收结果回调 _1错误信息  _2用户Id
+	* @param[in] cb 传入接收结果回调 _1错误信息  _2用户Id,_3 帐号被锁定剩余时长
 	* @return	int64 返回当前执行的操作ID，用于取消该次执行
 	*/
-	virtual int64 autoLogin(int64 userid, const std::string &server, std::function<void(ErrorInfo, int64, const std::string&)> cb) = 0;
+	virtual int64 autoLogin(int64 userid, const std::string &server, std::function<void(ErrorInfo, int64, int64, const std::string&)> cb) = 0;
 
 	/**
 	* \brief 离线登录
@@ -227,6 +227,11 @@ public:
 	* @param[return] 返回0代表获取失败，否则，返回获取数据的实际长度
 	*/
 	virtual int getLoginInfo(uint8_t *data, int len) = 0;
+	/**
+	*\brief 获取Oauth 授权码
+	*/
+	virtual void getLoginAuthCode(oauthReq&, std::function<void(ErrorInfo, const std::string&)> cb) = 0;
+
 };
 
 } /*namespace service*/

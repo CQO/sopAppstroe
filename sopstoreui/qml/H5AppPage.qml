@@ -50,6 +50,14 @@ CPage {
                 mainApp.uninstall(sopId);
             }
         }
+        Connections{
+            target: mainApp
+            onRefreshData:{
+                var json = {"refreshData":true};
+                content.onRefreshData(JSON.stringify(json));
+            }
+        }
+
         WebView {
             id: webView
 
@@ -59,7 +67,7 @@ CPage {
              url:'http://192.168.132.45:8080'
 
             z:parent.z + 9999
-              //url:mainApp.appUrl
+           //   url:mainApp.appUrl
             width:parent.width
             height: parent.height
             clip: true

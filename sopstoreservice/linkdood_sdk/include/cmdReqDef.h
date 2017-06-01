@@ -1949,6 +1949,24 @@ namespace imsdk
 		CMD_SIZE();
 	};
 
+	
+	/**
+	* \struct req_getEntAppInfo 消息号 logic_cmd_getEntAppInfo
+	* \brief  根据用户id分页获取企业号
+	*/
+	struct req_getEntAppInfo : public _sdkcmd_base
+	{
+		req_getEntAppInfo() :pageNum(0), pageSize(0), status(0), userID(0)
+		{
+			INIT_ISSET(entID)
+		}
+		int32 pageNum;          ///< 页码
+		int32 pageSize;         ///< 每页大小
+		int8 status;            ///< 状态 1待审核，2可用，3审核不通过，4停用，5锁定，6删除
+		int64 userID;           ///< 登录用户id
+		IS_SET(int64, entID);   ///< 企业ID，能获取到就传获取到的值  获取不到 就传0
+		CMD_SIZE();
+	};
 	/**
 	* \struct req_queryEmotion 消息号 logic_cmd_queryEmoticon
 	* \brief  单个表情查询、根据表情包标识查询表情，查询所有用户自定义表情

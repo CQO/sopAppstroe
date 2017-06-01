@@ -167,14 +167,22 @@ struct  resp_transferMsg : public _sdkrespcmd_base
  */
 struct  resp_sendMessage : public _sdkrespcmd_base
 {
+	resp_sendMessage()
+	{
+		init();
+	}
 	std::string what;
 	int64 messageID;       ///< 服务端发送消息ID
 	int64 sendTime;        ///< 服务端发送消息时间
 	int64 lastMessageID;   ///< 服务端上次发送消息ID
-	std::vector<std::string> badwordList; ///< 如果发送的消息包含敏感词，返回敏感词的集合
+	std::vector<std::string> badwordList; ///< 如果发送的消息包含敏感词，返回敏感词的集合。用于一步发送文件消息时，为文件的远程url,按原图-缩略图-原图。。排列
 	int8 badwordType;      ///< 0不过滤 1使用*号 2禁止发送
 	void init()
 	{
+		messageID = 0;
+		sendTime = 0;
+		lastMessageID = 0;
+		badwordType = 0;
 		badwordList.clear();
 	}
 	CMD_SIZE();
@@ -413,6 +421,7 @@ struct resp_LoginResultBean : public _sdkrespcmd_base
 	std::string area;                 ///< 地区 area.
 	int32 sessionTimeout;             ///< 超时时间 sessionTimeout.
 	int64 serverTime;                 ///< 服务器时间 serverTime.
+	int64 remainLockTime;             ///< 账号锁定剩余时长,只有在账号被锁定时才有效
 	void init() 
 	{
 		what="";
@@ -1382,6 +1391,22 @@ struct resp_getInstalledApplication : public _sdkrespcmd_base
 	std::vector<st_smallMarketAppInfo> appInfoList;  ///< 应用列表.
 	CMD_SIZE();
 	COPY_OTHER(resp_getInstalledApplication);
+};
+/**
+* \struct resp_getEntAppInfo 消息号 logic_cmd_getEntAppInfo
+* \brief 根据用户id分页获取企业号
+*/
+struct resp_getEntAppInfo : public _sdkrespcmd_base
+{
+	void init() {
+		appList.clear();
+	}
+	int64 totalCount;                         ///< 总数量
+	int64 totalPage;                          ///< 总页数
+	std::vector<st_tinyAppInfo> appList;      ///< 企业号集合
+
+	CMD_SIZE();
+	COPY_OTHER(resp_getEntAppInfo);
 };
 
 /**

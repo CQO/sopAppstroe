@@ -372,6 +372,12 @@ public:
 	* @param[in] cb 传入接收结果回调  _1错误信息 _2使用天数
 	*/
 	virtual void getInstallDays(std::function<void(ErrorInfo, int32)> cb) = 0;
+	
+	/**
+	*\brief 根据用户id分页获取企业号
+	*@param[in] cb 
+	*/
+	virtual void getEntAppInfo(reqEntAppInfo& req,std::function<void(ErrorInfo, int64, int64, std::vector<model::EntAppinfo>&)> cb) = 0;
 
 	/**************IOS专用接口 end***************/
 

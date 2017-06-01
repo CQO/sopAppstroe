@@ -159,33 +159,23 @@ namespace imsdksopstore {
         std::string relationColumn2;///< 预留字段2
         std::string relationColumn3;///< 预留字段3
     };
-	///客户端统计接口
-	struct AppStatisticsBean{
-		/* 应用类型：
-		* 1：门户应用类型 2.普通应用类型
-		*/
-		std::string appType;
-		/* 应用ID */
-		std::string appID;
-		/* 用户ID */
-		std::string userID;
-		/* 组织机构ID*/
-		std::string orgID;
-		/* 组织机构CODE */
-		std::string orgCode;
-		/* 组织机构CODE */
-		std::string unitID;
+	
+	/// 客户端统计接口
+	struct AppStatisticsBean {
+		std::string appType;		///< 应用类型: 1.门户应用类型 2.普通应用类型
+		std::string appID;			///< 应用ID
+		std::string userID;			///< 用户ID
+		std::string orgID;			///< 组织机构ID
+		std::string orgCode;		///< 组织机构CODE
+		std::string unitID;			///< 组织机构CODE
 	};
-	/**
-	* 应用统计结果实体
-	* zhaorujia
-	*/
-	struct AppStatisticsResult{
-		/* 结果描述 */
-		std::string msg;
-		/* 结果码 */
-		std::string code;
+	
+	/// 应用统计结果实体
+	struct AppStatisticsResult {
+		std::string msg;			///< 结果描述
+		std::string code;			///< 结果码
 	};
+	
     /// 我的应用信息
     struct MyAppInfo {
         MyAppInfo() :
