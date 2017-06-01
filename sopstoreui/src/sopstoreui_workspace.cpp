@@ -73,7 +73,6 @@ sopstoreui_Workspace::~sopstoreui_Workspace()
 
 void sopstoreui_Workspace::onActive()
 {
-    qDebug()<<Q_FUNC_INFO<<"sssssssssssssss:onActive";
     if(mNeedNoticeRefreshData){
         mNeedNoticeRefreshData = false;
         CProcessManager proMgr;
@@ -84,8 +83,9 @@ void sopstoreui_Workspace::onActive()
                 break;
             }
         }
+        emit refreshData();
     }
-    emit refreshData();
+
 }
 
 void sopstoreui_Workspace::onLaunchComplete(Option option, const QStringList& params)
