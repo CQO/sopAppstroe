@@ -112,7 +112,8 @@ void SopStoreClinet::getAppLoginStatus()
 
 void SopStoreClinet::onRefreshData(QString json)
 {
-   emit refreshData(json);
+    qDebug()<<Q_FUNC_INFO<<"onRefreshData:"<<json;
+   emit jsonParce(json,"refreshData");
 }
 
 void SopStoreClinet::onLoginResult(QString json)

@@ -60,7 +60,7 @@ signals:
     void noticeLastMsg(QString msgContent);
     void installApp(QString appPath);
     void uninstallApp(QString sopId);
-    void refreshData(QString json);
+//    void refreshData(QString json);
 public slots:
     void onRefreshData(QString json);
     void onGetAppLoginStatusResult(QString json);
