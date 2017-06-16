@@ -53,6 +53,7 @@ public:
     Q_INVOKABLE void log(QString data);
     Q_INVOKABLE void getAccountInfo();
     Q_INVOKABLE void getAppLoginStatus();
+    Q_INVOKABLE void getSystemAppList();
 signals:
     void voiceCall(QString param);
     void openApp(QString param);
@@ -60,8 +61,10 @@ signals:
     void noticeLastMsg(QString msgContent);
     void installApp(QString appPath);
     void uninstallApp(QString sopId);
+    void getSystemApps();
 //    void refreshData(QString json);
 public slots:
+    void onGetSystemApps(QString json);
     void onRefreshData(QString json);
     void onGetAppLoginStatusResult(QString json);
     void onLoginResult(QString json);

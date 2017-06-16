@@ -16,21 +16,21 @@ SopStoreClinet::~SopStoreClinet()
 
 void SopStoreClinet::writeData(QString content)
 {
-   QFile file(APP_DATA_CACHE);
-   if(file.open(QIODevice::WriteOnly)){
-       file.write(content.toUtf8().data());
-       file.close();
-   }
-   jsonParce("{\"result\":true}","writeData");
+    QFile file(APP_DATA_CACHE);
+    if(file.open(QIODevice::WriteOnly)){
+        file.write(content.toUtf8().data());
+        file.close();
+    }
+    jsonParce("{\"result\":true}","writeData");
 }
 
 QString SopStoreClinet::readData()
 {
     QFile file(APP_DATA_CACHE);
     if(file.open(QIODevice::ReadOnly)){
-       QString content = file.readAll();
-       file.close();
-       return content;
+        QString content = file.readAll();
+        file.close();
+        return content;
     }
     return "";
 }
@@ -110,10 +110,19 @@ void SopStoreClinet::getAppLoginStatus()
     GET_DATA(getAppLoginStatus);
 }
 
+void SopStoreClinet::getSystemAppList()
+{
+    emit getSystemApps();
+}
+
+void SopStoreClinet::onGetSystemApps(QString json)
+{
+    emit jsonParce(json,"getSystemAppList");
+}
 void SopStoreClinet::onRefreshData(QString json)
 {
     qDebug()<<Q_FUNC_INFO<<"onRefreshData:"<<json;
-   emit jsonParce(json,"refreshData");
+    emit jsonParce(json,"refreshData");
 }
 
 void SopStoreClinet::onLoginResult(QString json)

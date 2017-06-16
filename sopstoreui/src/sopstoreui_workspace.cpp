@@ -1,5 +1,7 @@
 #include "sopstoreui_workspace.h"
 #include "sopstoreclinet.h"
+#include <QJsonObject>
+#include <QJsonDocument>
 
 int sopstoreui_Workspace::pageType(QString url)
 {
@@ -39,6 +41,22 @@ void sopstoreui_Workspace::openApp(QString url)
     qApp->openUrl(url);
 }
 
+void sopstoreui_Workspace::getSystemAppList()
+{
+    QList<QSharedPointer<CPackageInfo> > list = mSysPkgMgr->packageInfoList();
+    QJsonDocument doc;
+    QJsonObject root;
+    for(auto i :list){
+        QJsonObject child;
+        child.insert("ver",i->versionName());
+        child.insert("name",i->name());
+        root.insert(i->sopid(),child);
+    }
+    doc.setObject(root);
+    QString json = doc.toJson();
+    emit systemApps(json);
+}
+
 QUrl sopstoreui_Workspace::appUrl()
 {
     QUrl url;
@@ -73,19 +91,19 @@ sopstoreui_Workspace::~sopstoreui_Workspace()
 
 void sopstoreui_Workspace::onActive()
 {
-    if(mNeedNoticeRefreshData){
-        mNeedNoticeRefreshData = false;
-        CProcessManager proMgr;
-        QList<int> pids = proMgr.processList();
-        for(auto i : pids){
-            if(proMgr.sopidByPid(i) == "com.syberos.browser"){
-                proMgr.killProcessByPid(i);
-                break;
-            }
+    //    if(mNeedNoticeRefreshData){
+    //        mNeedNoticeRefreshData = false;
+    //    }
+    CProcessManager proMgr;
+    QList<int> pids = proMgr.processList();
+    for(auto i : pids){
+        if(proMgr.sopidByPid(i) == "com.syberos.browser"){
+            qDebug()<<Q_FUNC_INFO<<"kill browser.";
+            proMgr.killProcessByPid(i);
+            break;
         }
-        emit refreshData();
     }
-
+    emit refreshData();
 }
 
 void sopstoreui_Workspace::onLaunchComplete(Option option, const QStringList& params)

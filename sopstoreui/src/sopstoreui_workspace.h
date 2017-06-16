@@ -29,6 +29,7 @@ public:
     Q_INVOKABLE void install(QString params);
     Q_INVOKABLE void uninstall(QString params);
     Q_INVOKABLE void openApp(QString url);
+    Q_INVOKABLE void getSystemAppList();
 
     QUrl    appUrl();
     sopstoreui_Workspace();
@@ -39,6 +40,7 @@ public:
 signals:
     void appUrlChanged();
     void refreshData();
+    void systemApps(QString json);
 public slots:
     void onInstallStatusChanged(const QString& sopid,
                                 const QString& pkgPath,
