@@ -24,7 +24,11 @@ public:
 
     void getAccountInfo(Account& info );
     int64 userId();
+
+    void getLoginAuthCode(oauthReq req);
+    void _getLoginAuthCode(service::ErrorInfo code, const std::string& authCode);
 signals:
+    void loginAuthCodeResult(QString authCode);
     void loginResult(int code);
     void loginoutResult(int code);
     void changePasswordResult(int code);

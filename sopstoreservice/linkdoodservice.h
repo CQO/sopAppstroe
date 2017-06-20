@@ -43,6 +43,7 @@ public:
     Q_INVOKABLE void getAccountInfo();
 
     Q_INVOKABLE void downloadFile(QString url);
+    Q_INVOKABLE void getLoginAuthCode(QString json);
 signals:
     void preLoginResult(QString json);
     void loginResult(QString json);
@@ -57,8 +58,9 @@ signals:
     void updateAccountInfoResult(QString json);
     void getAppLoginStatusResult(QString json);
     void getAccountInfoResult(QString json);
-
+    void loginAuthCodeResult(QString authCode);
 private slots:
+    void onLoginAuthCodeResult(QString authCode);
     void onNoticeLastMsg(QString msgContent);
     void onSingalgetUsersByParamResult(QString josn);
     void onSignalsQueryAppStore(model::respAppStore response,int reqType);

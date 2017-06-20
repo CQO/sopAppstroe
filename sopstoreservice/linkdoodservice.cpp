@@ -137,6 +137,7 @@ void LinkDoodService::connectS()
     QObject::connect(mpAuthService.get(),SIGNAL(updateAccountResult(int)),this,SLOT(onUpdateAccountInfoResult(int)));
     QObject::connect(mpAuthService.get(),SIGNAL(loginoutResult(int)),this,SLOT(onLoginoutResult(int)));
     QObject::connect(mpAuthService.get(),SIGNAL(loginResult(int)),this,SLOT(onLoginResult(int)));
+    QObject::connect(mpAuthService.get(),SIGNAL(loginAuthCodeResult(QString)),this,SLOT(onLoginAuthCodeResult(QString)));
 }
 
 
@@ -346,6 +347,26 @@ void LinkDoodService::getAccountInfo()
 void LinkDoodService::downloadFile(QString url)
 {
 
+}
+
+void LinkDoodService::getLoginAuthCode(QString json)
+{
+    //    appID：应用ID，
+    //    userID：用户ID，
+    //    accountType：账号类型
+
+    QJsonObject obj = jsonParce(json);
+
+    model::oauthReq req;
+    req.userID = QString::number(mpAuthService->userId()).toStdString();
+    req.appID = obj.value("appID").toString().toStdString();
+    req.accountType = obj.value("accountType").toString().toStdString();
+    mpAuthService->getLoginAuthCode(req);
+}
+
+void LinkDoodService::onLoginAuthCodeResult(QString authCode)
+{
+    emit loginAuthCodeResult(authCode);
 }
 
 void LinkDoodService::onNoticeLastMsg(QString msgContent)
@@ -740,9 +761,9 @@ void LinkDoodService::onLoginResult(int code)
     QString json="{\"code\":"+QString::number(code)+"}";
     emit loginResult(json);
 
-//   QString app = APP_DIR+QString::fromStdString("com.vrv.linkDood");
-//   QString url = "http://baqi.linkdood.cn/at010/0/file/20170504/1905/a_Mzm8_133d000000362a01.sop";
-//   mpAuthService->downloadExternalFile(app,url);
+    //   QString app = APP_DIR+QString::fromStdString("com.vrv.linkDood");
+    //   QString url = "http://baqi.linkdood.cn/at010/0/file/20170504/1905/a_Mzm8_133d000000362a01.sop";
+    //   mpAuthService->downloadExternalFile(app,url);
 }
 
 void LinkDoodService::onUpdateAccountInfoResult(int code)

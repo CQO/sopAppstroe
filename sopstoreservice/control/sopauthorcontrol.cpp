@@ -102,3 +102,13 @@ int64 SopAuthorControl::userId()
 {
     return mUserId;
 }
+
+void SopAuthorControl::getLoginAuthCode(oauthReq req)
+{
+    m_pAuthorService->getLoginAuthCode(req,std::bind(&SopAuthorControl::_getLoginAuthCode,this,std::placeholders::_1,std::placeholders::_2));
+}
+
+void SopAuthorControl::_getLoginAuthCode(service::ErrorInfo code, const std::string &authCode)
+{
+    emit loginAuthCodeResult(QString::fromStdString(authCode));
+}

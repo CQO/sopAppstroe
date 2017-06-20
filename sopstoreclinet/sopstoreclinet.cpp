@@ -115,6 +115,20 @@ void SopStoreClinet::getSystemAppList()
     emit getSystemApps();
 }
 
+void SopStoreClinet::getLoginAuthCode(QString json)
+{
+    GET_DATA_PARAMS(getLoginAuthCode,json);
+}
+
+void SopStoreClinet::onLoginAuthCodeResult(QString authCode)
+{
+    QJsonDocument doc;
+    QJsonObject obj;
+    obj.insert("authCode",authCode);
+    doc.setObject(obj);
+    emit jsonParce(doc.toJson(),"getLoginAuthCode");
+}
+
 void SopStoreClinet::onGetSystemApps(QString json)
 {
     emit jsonParce(json,"getSystemAppList");
@@ -294,6 +308,7 @@ void SopStoreClinet::initDBusConnect()
     CONNECT_DEBUS(updateAccountResult,UpdateAccountResult(QString));
     CONNECT_DEBUS(getAccountInfoResult,GetAccountInfoResult(QString));
     CONNECT_DEBUS(getAppLoginStatusResult,GetAppLoginStatusResult(QString));
+    CONNECT_DEBUS(loginAuthCodeResult,LoginAuthCodeResult(QString));
 }
 
 void SopStoreClinet::jsonParce(QString json,QString fName)
