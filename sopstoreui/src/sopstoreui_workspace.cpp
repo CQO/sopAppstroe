@@ -37,6 +37,15 @@ void sopstoreui_Workspace::openApp(QString url)
 {
     if(url.contains("browser:")){
         mNeedNoticeRefreshData = true;
+        CProcessManager proMgr;
+        QList<int> pids = proMgr.processList();
+
+        for(auto i : pids){
+            qDebug()<<Q_FUNC_INFO<<"kill id:"<<i<<",sodId:"<<proMgr.sopidByPid(i);
+            if(proMgr.sopidByPid(i) == "com.syberos.browser"){
+                proMgr.killProcessByPid(i);
+            }
+        }
     }
     qApp->openUrl(url);
 }
@@ -100,7 +109,6 @@ void sopstoreui_Workspace::onActive()
         if(proMgr.sopidByPid(i) == "com.syberos.browser"){
             qDebug()<<Q_FUNC_INFO<<"kill browser.";
             proMgr.killProcessByPid(i);
-            break;
         }
     }
     emit refreshData();

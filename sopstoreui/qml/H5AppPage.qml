@@ -70,7 +70,7 @@ CPage {
 
 
             //      url:'http://172.25.76.6:8080'
-            //   url:'http://192.168.132.45:8080'
+             //  url:'http://192.168.132.45:8080'
 
             z:parent.z + 9999
             url:mainApp.appUrl
