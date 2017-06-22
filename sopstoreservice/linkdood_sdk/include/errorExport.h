@@ -472,7 +472,10 @@ enum {
     err_sdk_gaSendBack,//核查发送人在后台被加入黑名单
     err_sdk_gaReceiveBack,//核查接收人在后台被加入黑名单
 	err_sdk_loginfoErr, ///登录缓存文件失败
-	err_sdk_avTimeOut,     //已经超时
+	err_sdk_avTimeOut,      //已经超时
+    err_sdk_tclBusy,        //正在进行远程控制
+    err_sdk_tclDisconnect,  //连接已断开
+    err_sdk_tclNoIPAddr,    //受控方未发送IP
 };
 
 #endif /* PROTOCOL_ERROREXPORT_H_ */

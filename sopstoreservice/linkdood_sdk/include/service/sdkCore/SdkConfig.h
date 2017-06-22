@@ -73,6 +73,8 @@ public:
 	bool getRoming();
 
 	bool reNotifyData();
+    
+    bool setRootPath(const std::string &rootPath);
 
 private:
     int m_cliid;

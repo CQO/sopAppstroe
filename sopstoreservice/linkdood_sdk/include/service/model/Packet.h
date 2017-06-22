@@ -143,7 +143,7 @@ struct  MsgDetailSearchResult
 	MsgDetailSearchResult() :nextMsgId(0){}
 	int64 nextMsgId;  ///<后续查找的消息ID，0代表已搜索全部消息
 	std::map<int64, SimpleSearchInfo> senderInfos; ///<存放此次搜索结果中的所有发送者信息,key为senderUserId
-	std::vector<Msg> msgs; ///<保存所有消息内容信息
+	std::vector<std::shared_ptr<Msg> > msgs; ///<保存所有消息内容信息
 };
 
 struct UploadFileProperty
@@ -507,4 +507,6 @@ struct SubServerInfo
 	 Optional< std::string> account; ///< 账户
 	 Optional< std::string> password;///< 密码
  };
+
+
 } /*namespace service*/

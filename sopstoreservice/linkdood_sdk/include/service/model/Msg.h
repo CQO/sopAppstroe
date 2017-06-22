@@ -527,12 +527,15 @@ public:
 		isFinish.resize(MSGMEMSIZE);
 		isTask.resize(MSGMEMSIZE);
 		isRead.resize(MSGMEMSIZE);
+		fontSize = 0;
 	}
 	~MsgTask(){}
 	std::string timeTask;
 	std::string isFinish;
 	std::string isTask;
 	std::string isRead;
+	int fontSize;
+
 };
 
 struct st_Masterplate{
@@ -581,16 +584,16 @@ public:
 		localVedioPath.resize(MSGMEMSIZE);
 		encryptKey.resize(MSGMEMSIZE);
 	}
-	int64 buddyId;
-	int8 brustFlag;
+	int64 buddyId;					///< 接收人ID
+	int8 brustFlag;					///< 是否阅后即焚
 	std::string preImgPath;			///< 预览图片服务器地址  一步发送消息时不赋值
 	std::string vedioFileName;		///< 视频服务器地址	 一步发送消息时不赋值
 	std::string localPreImgPath;	///< 本地预览图片路径 一步发送消息时使用
 	std::string localVedioPath;		///< 本地视频路径	一步发送消息时使用
-	int64 vedioHight;
-	int64 vedioLenth;
-	int64 vedioWideth;
-	int64 vedioSize;
+	int64 vedioHight;				///< 视频分辨率高
+	int64 vedioLenth;				///< 视频长, （毫秒）
+	int64 vedioWideth;				///< 视频分比率宽
+	int64 vedioSize;				///< 视频大小（Byte）
 	std::string encryptKey;///<加密KEY
 
 };

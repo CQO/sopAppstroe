@@ -12,7 +12,7 @@
 #include <vector>
 
 #define VER_EXT INTERFACE_VERSION(1,0)
-static const VRVIID IID_IExtService = { 0x92d87e43, 0x466c, 0x4426, 0x8d, 0xfd, 0x28, 0x1f, 0xe7, 0x45, 0xac, 0xb };
+static const VRVIID IID_IExtService = { 0x5dd084b3, 0x19f, 0x4109, 0x88, 0x92, 0x8f, 0xf9, 0x77, 0xa9, 0xac, 0xa2 };
 
 namespace service
 {
@@ -97,9 +97,10 @@ public:
 	* @param[in] msgID    type = 1时赋值
 	* @param[in] timeTask type = 2时赋值
  	* @param[in] count  要获取的的任务id
+	* @param[in] begin  从第几条开始 如果从第一条开始就传0
 	* @param[in] cb  传入接收结果回调 _1 错误号;_2 回复消息;
 	*/
-	virtual void getRecvMsg(int8 type, int64 msgID, std::string timeTask, int count, std::function<void(ErrorInfo, std::vector<Msg>&, std::vector<model::Task>&)> cb) = 0;
+	virtual void getRecvMsg(int8 type, int64 msgID, std::string timeTask, int count, int begin, std::function<void(ErrorInfo, std::vector<MsgPtr>&, std::vector<model::Task>&)> cb) = 0;
 
 	
 	//room
@@ -214,6 +215,7 @@ public:
 	* @param [in] cb  传入接收结果回调 _1 错误号;_2 组织信息;
 	*/
 	virtual void getOrgInfo(int64 orgId, std::function<void(ErrorInfo, OrganizationInfo&)> cb) = 0;
+	virtual void getOrgInfos(std::vector<int64>& orgId, std::function<void(ErrorInfo,std::vector<OrganizationInfo>&)> cb) = 0;
 
 	//msg
 	/**

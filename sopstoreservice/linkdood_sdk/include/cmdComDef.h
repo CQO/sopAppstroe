@@ -133,10 +133,11 @@ struct resp_commonResult : public _sdkrespcmd_base
 	 */
 	struct st_tinyUserBean
 	{
-		st_tinyUserBean() :sex(0),
-		timezone(0),
-		userid(0),
-		birthday(0)
+		st_tinyUserBean() :
+            sex(0),
+		    timezone(0),
+		    userid(0),
+		    birthday(0)
 		{
 			INIT_ISSET(sex)
 			INIT_ISSET(timezone)
@@ -153,6 +154,17 @@ struct resp_commonResult : public _sdkrespcmd_base
 			INIT_ISSET(nickID)
 			INIT_ISSET(phones)
 			INIT_ISSET(emails)
+#ifdef SDK_FOR_ANDROID
+            name.resize(500);
+            pinyin.resize(500);
+            avatar.resize(500);
+            avatarUrl.resize(500);
+            srcAvatar.resize(500);
+            srcAvatarUrl.resize(500);
+            sign.resize(500);
+            area.resize(500);
+            nickID.resize(500);
+#endif
 		}
 		///性别
 		IS_SET(int, sex)
@@ -237,12 +249,15 @@ struct resp_commonResult : public _sdkrespcmd_base
 	struct st_userBean
 	{
 		st_userBean() {
-		INIT_ISSET(extend)
-		INIT_ISSET(entExtend)
-		INIT_ISSET(info)
+		    INIT_ISSET(extend)
+		    INIT_ISSET(entExtend)
+		    INIT_ISSET(info)
+#ifdef SDK_FOR_ANDROID
+            extend.resize(500);
+            entExtend.resize(500);
+#endif
 		}
-		void init()
-		{
+		void init() {
 			INIT_ISSET(extend)
 			INIT_ISSET(entExtend)
 			INIT_ISSET(info)
@@ -255,9 +270,8 @@ struct resp_commonResult : public _sdkrespcmd_base
 		IS_SET(std::string, entExtend)
 		///基础信息
 		IS_SET(st_tinyUserBean, info)
-		bool operator == (const st_userBean& rhs) const
-		{
-				return (extend == rhs.extend && info == rhs.info  && entExtend == rhs.entExtend);
+		bool operator == (const st_userBean& rhs) const	{
+			return (extend == rhs.extend && info == rhs.info  && entExtend == rhs.entExtend);
 		}
 	};
 
@@ -267,8 +281,17 @@ struct resp_commonResult : public _sdkrespcmd_base
 	 */
 	struct st_buddyBean
 	{
-		st_buddyBean() :page(0), isstar(0){}
-		int32 page;				///< 好友页 page.
+		st_buddyBean() :page(0), isstar(0) {
+#ifdef SDK_FOR_ANDROID
+            remark.resize(500);
+            remarkPy.resize(500);
+            chatImage.resize(500);
+            srvName.resize(500);
+            privateMsgPwd.resize(500);
+#endif
+        }
+
+		int32 page;				    ///< 好友页 page.
 		///是否特别/星标好友 1是，该字段含有0x1000标识为应用，含有0x2000标示为隐藏好友，含有0x4000表示置顶
 		int32 isstar;
 		std::string remark;			///< 备注 remark.
@@ -350,6 +373,7 @@ struct resp_commonResult : public _sdkrespcmd_base
 		msgType(0),
 		activeType(0),
 		unreadCnt(0),
+		realUnReadCnt(0),
 		lastAtMsgID(0),
 		msgRemindMode(0){}
 
@@ -469,6 +493,9 @@ struct resp_commonResult : public _sdkrespcmd_base
 			INIT_ISSET(srvName)
 			INIT_ISSET(area)
 			INIT_ISSET(birthday)
+			INIT_ISSET(phoneNums)
+			INIT_ISSET(emails)
+			INIT_ISSET(nickID)
 		}
 
 		void init()
@@ -485,6 +512,9 @@ struct resp_commonResult : public _sdkrespcmd_base
 			INIT_ISSET(srvName)
 			INIT_ISSET(area)
 			INIT_ISSET(birthday)
+			INIT_ISSET(phoneNums)
+			INIT_ISSET(emails)
+			INIT_ISSET(nickID)
 		}
 
 		int64 userid;			///< 用户ID 	    userid.
@@ -527,6 +557,12 @@ struct resp_commonResult : public _sdkrespcmd_base
 		IS_SET(std::string, area)
 		///生日
 		IS_SET(int64, birthday)
+		//手机
+		IS_SET(std::vector<std::string>, phoneNums)
+		//邮箱
+		IS_SET(std::vector<std::string>, emails)
+		//账号
+		IS_SET(std::string, nickID)
 	};
 
 	/**
@@ -535,6 +571,18 @@ struct resp_commonResult : public _sdkrespcmd_base
 	 */
 	struct  st_msgBean
 	{
+        st_msgBean() {
+            limitRange.clear();
+            relatedUsers.clear();
+#ifdef SDK_FOR_ANDROID
+            message.resize(500);
+            format.resize(500);
+            msgProperties.resize(500);
+            sourceID.resize(500);
+            memberName.resize(500);
+#endif
+        }
+
 		int64 sendUserID;     ///< 消息发送人员ID sendUserID.
 		int64 receTargetID;   ///< 消息接收者，有可能是自己，有可能是群 receTargetID.
 		int64 sendTime;       ///< 发送时间 　　sendTime.
@@ -1034,16 +1082,34 @@ struct resp_commonResult : public _sdkrespcmd_base
 
 	///应用信息
 	struct st_tinyAppInfo {
-		st_tinyAppInfo() : appID(0)
-		{
+		st_tinyAppInfo() : appID(0) {
+			configKey.clear();
+			configVal.clear();
+#ifdef SDK_FOR_ANDROID
+            appSign.resize(500);
+            appName.resize(500);
+            appIcon.resize(500);
+            homeUrl.resize(500);
+            entName.resize(500);
+            appSecret.resize(500);
+            appToken.resize(500);
+            appMenus.resize(500);
+            subAccount.resize(500);
+            extend.resize(500);
+            deviceTypes.resize(500);
+            messageHistoryUrl.resize(500);
+            menuOpen.resize(500);
+            replyMenuOpen.resize(500);
+            appFunctintroduce.resize(500);
+            appDescription.resize(500);
+#endif
+		}
+
+		void init() {
 			configKey.clear();
 			configVal.clear();
 		}
-		void init()
-		{
-			configKey.clear();
-			configVal.clear();
-		}
+
 		std::string appSign; ///< 应用标识
 		std::string appName; ///< 应用名称
 		std::string appIcon; ///< 应用图标

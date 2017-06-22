@@ -26,6 +26,8 @@ public:
 	std::string pwd;
     std::string user_icon;				///<头像
     std::string nation;					///<国家码
+	std::string phone;					///<绑定的手机
+	std::string email;					///<绑定的邮箱
 };
 ///代理
 struct NetProxy

@@ -212,6 +212,8 @@ struct    st_LoginInfoBean{
 	std::string entArea;			///< 企业域
 	int32 userType;                 ///< 登录账户类型，1：手机，2：QQ，3：邮箱，4：UserID
 	std::string nationalCode;       ///< 国家代码
+	std::string phone;				///< 绑定的手机
+	std::string email;				///< 绑定的邮箱
 
 	const std::string output_parameter()
 	{

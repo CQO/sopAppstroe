@@ -11,7 +11,7 @@
 #include <vector>
 
 #define VER_CONTACT INTERFACE_VERSION(1,0)
-static const VRVIID IID_IContactService = { 0x92d87e83, 0x460c, 0x4456, 0x8d, 0xfd, 0x28, 0x1f, 0xe7, 0x45, 0xac, 0xb };
+static const VRVIID IID_IContactService = { 0x3de6bc58, 0x3d6f, 0x4b25, 0x8f, 0x36, 0xc5, 0xb, 0x65, 0x76, 0x44, 0xdd };
 
 namespace service
 {
@@ -72,6 +72,16 @@ public:
 	*/
 	virtual void addContact(int64 userid, const std::string &remark, const std::string &info, 
 							std::function<void(ErrorInfo)> cb) = 0;
+
+	/**
+	* \brief 直接添加联系人，不需要验证
+	* @param[in] userid 传入联系人ID
+	* @param[in] remark 传入联系人备注，可以为空
+	* @param[in] info   传入验证信息
+	* @param[in] cb  传入接收结果回调 _1错误信息
+	*/
+	virtual void addContactNoVerify(int64 userid, const std::string &remark, const std::string &info,
+				std::function<void(ErrorInfo)> cb) = 0;
 
 	/**
 	* \brief 获取联系人验证方式

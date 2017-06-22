@@ -212,6 +212,11 @@ struct resp_SearchResult : public _sdkrespcmd_base
 	std::vector<st_orGroupinfo> vtOrgroup;     	    ///< 企业组织列表 vtOrgroup.
 	std::vector<st_orgUserinfo> vtorgUser;      	///< 组织用户列表 vtorgUser
 	std::vector<st_entAppinfo> vtEntApp;       	    ///< 企业应用列表 vtEntApp
+	void push_orgUserinfo(const st_orgUserinfo & st) 
+	{
+		st_orgUserinfo tmp = st ;
+		vtorgUser.push_back(tmp);
+	}
 	void init() 
 	{
 		vtub.clear();

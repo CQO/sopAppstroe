@@ -1235,6 +1235,12 @@ enum
 	* [out] resp_getEntAppInfo
 	*/
 	logic_cmd_getEntAppInfo = 0xBE,
+	/**
+	*  \brief 离线转在线登录消息
+	* [in]  req_loginParamBean
+	* [out] resp_loginResultBean
+	*/
+	logic_cmd_offLineToLogin,
 	logic_cmd_max
 };
 

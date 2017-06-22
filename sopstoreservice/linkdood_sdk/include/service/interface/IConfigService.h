@@ -7,7 +7,7 @@
 #include "IService.h"
 
 #define VER_CONFIG INTERFACE_VERSION(1,0)
-static const VRVIID IID_IConfigService = { 0x92d87e95, 0x46ae, 0x4468, 0x8d, 0xfd, 0x28, 0x1f, 0xe7, 0x45, 0xac, 0xb };
+static const VRVIID IID_IConfigService = { 0x6f57b9fc, 0x7c48, 0x42e8, 0xb8, 0xab, 0xc6, 0x9b, 0x1f, 0x80, 0x50, 0x13 };
 
 namespace service
 {
@@ -128,6 +128,13 @@ public:
 	* @return   根路径
 	*/
 	virtual std::string rootPath() = 0;
+    
+    /**
+     * \brief <U>设置资源根路径，包括图片，文件，音频，视频路径都受影响
+     * 比如设置为/home/sharp/ , 图片路径就会成为/home/sharp/{userid}/image
+     * userid为当前登录的用户ID
+     */
+    virtual bool setRootPath(const std::string &rootPath) = 0;
 
 	/**
 	* \brief <G>获取头像路径

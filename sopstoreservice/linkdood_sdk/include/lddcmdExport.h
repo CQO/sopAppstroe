@@ -132,6 +132,8 @@ enum {
     /// [in] req_opRoomMembers           [out] resp_commonResult
     ldd_logic_cmd_delRoomMembers = 11033,     /// 房间删除人员
 
+    ldd_logic_cmd_getOrgInfos = 11034,        /// 批量获取组织信息
+
 
 	ldd_logic_cmd_max	                      /// 最大的命令标识，标识命令个数，无特殊业务意义
 };
@@ -361,13 +363,14 @@ struct req_getReceiveMsg : public _sdkcmd_base
     req_getReceiveMsg() {
         type = 0;
         msgID = 0;
-        count = 30;
+        count = 10;
     }
 
     int8 type;              ///< 1:根据msgID获取; 2:根据timeTask获取
     int64 msgID;            ///< type = 1时赋值
     std::string timeTask;   ///< type = 2时赋值
-    int count;              ///< 最多获取的数量(默认值为30)
+    int begin;              ///< 从第几条开始获取，如果从第一条开始获取，传0
+    int count;              ///< 获取几条
     CMD_SIZE();
 };
 
@@ -537,6 +540,10 @@ struct req_qEnUS : public _sdkcmd_base
 
 struct resp_qEnUS : public _sdkrespcmd_base
 {
+    resp_qEnUS() {
+        vtEntUser.clear();
+    }
+
     std::vector<st_entpriseUserInfo> vtEntUser;
     CMD_SIZE();
     COPY_OTHER(resp_qEnUS);
@@ -554,6 +561,28 @@ struct resp_getOrgInfo : public _sdkrespcmd_base
     st_organizationInfo orgInfo;
     CMD_SIZE();
     COPY_OTHER(resp_getOrgInfo);
+};
+
+/// ldd_logic_cmd_getOrgInfos
+struct req_getOrgInfos : public _sdkcmd_base
+{
+    req_getOrgInfos() {
+        vt.clear();
+    }
+
+    std::vector<int64> vt;
+    CMD_SIZE();
+};
+
+struct resp_getOrgInfos : public _sdkrespcmd_base
+{
+    resp_getOrgInfos() {
+        orgs.clear();
+    }
+
+    std::vector<st_organizationInfo> orgs;
+    CMD_SIZE();
+    COPY_OTHER(resp_getOrgInfos);
 };
 
 /// ldd_cmd_getMsgCount

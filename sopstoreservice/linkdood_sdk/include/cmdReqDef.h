@@ -577,11 +577,24 @@ namespace imsdk
 	 */
 	struct  req_addBuddyResponse : public _sdkcmd_base
 	{
+		req_addBuddyResponse()
+		{
+			refuseReason = "";
+			remark = "";
+			INIT_ISSET(inviteMark)
+		}
+		void init()
+		{
+			refuseReason = "";
+			remark = "";
+			INIT_ISSET(inviteMark)
+		}
 		int64 userID; 			  ///< 将要添加好友ＩＤ userID.
 		std::string refuseReason; ///< 拒绝理由 refuseReason.
 		std::string remark;       ///< 备注　remark.
 		int8 isAgree;             ///< 是否同意 1：同意，2：不同意，3：以后不允许添加，4：忽略 isAgree.
 		int64 reqVerifyboxID;     ///< 验证请求唯一编号 reqVerifyboxID.
+		IS_SET(int64, inviteMark) ///< 1.注册邀请
 		CMD_SIZE();
 	};
 
@@ -1038,6 +1051,7 @@ namespace imsdk
 	 */
 	struct req_getSysMsgList : public _sdkcmd_base
 	{
+		req_getSysMsgList() :type(0), time(0), msgOffset(0), offsetFlag(0){}
 		int8 type;                   ///< 0:全部 1:加好友请求 2:加好友响应 3:加群请求 4:加群响应 type.
 		/* 
 		  offsetFlag为0 以传入的time起始，向下偏移，拉取小于time的消息 如果time = 0，代表从最新收到的系统消息开始拉取

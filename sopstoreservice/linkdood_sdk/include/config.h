@@ -110,6 +110,7 @@ enum enLogModel
     enlogm_rtc,  ///<多点音视频
 	enlogm_sopstore,  ///<sopstore插件
     enlogm_external,  ///外部模块, 安卓 ios ,pc等平台输出的日志
+    enlogm_tcl,       ///< 远程控制插件
 };
 
 static const char *LogTagAuth = "auth";				///< 认证
@@ -145,6 +146,16 @@ static const char *LogTagOther = "other";			///< 其它功能(内部功能，初
     #endif
 #else
 	#define EXPORT_PLUGIN extern "C"
+#endif
+
+#ifdef _WIN32
+    #ifdef COMM_EXPORT
+        #define  COMM_EXPORT_API __declspec(dllexport)
+    #else
+        #define  COMM_EXPORT_API __declspec(dllimport)
+    #endif
+#else
+    #define  COMM_EXPORT_API
 #endif
 
 /**

@@ -10,7 +10,7 @@
 #include <string>
 
 #define VER_IAUTH INTERFACE_VERSION(1,0)
-static const VRVIID IID_IAuthSrvice = { 0x92d87e93, 0x46ac, 0x4466, 0x8d, 0xfd, 0x28, 0x1f, 0xe7, 0x45, 0xac, 0xb };
+static const VRVIID IID_IAuthSrvice = { 0x3271f2c2, 0xb855, 0x4234, 0x9f, 0x8b, 0x4d, 0x86, 0xd0, 0x6c, 0x2b, 0xb7 };
 
 namespace service 
 {
@@ -121,6 +121,16 @@ public:
 	*/
 	virtual int64 login(const std::string& user, const std::string& pwd, const std::string& server,
 						std::function<void(ErrorInfo, int64,int64, const std::string&)> cb) = 0;
+
+	//离线转在线接口
+	/**
+	 * @param[in] server 传入服务器地址，域名或IP均可
+	 * @param[in] cb 传入接收结果回调 _1错误信息  _2用户Id _3 帐号被锁定剩余时长,_4 返回1102错误时的验证码路径
+	 * @return	int64 返回当前执行的操作ID，用于取消该次执行
+	 */
+
+	virtual int64 offLineToLogin(const std::string& server,std::function<void(ErrorInfo, int64, int64, const std::string&)> cb) = 0;
+	//登录
 
 	/**
 	* \brief 自动登录（不用填密码）
