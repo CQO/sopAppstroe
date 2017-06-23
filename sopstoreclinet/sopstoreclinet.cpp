@@ -122,6 +122,7 @@ void SopStoreClinet::getLoginAuthCode(QString json)
 
 void SopStoreClinet::onLoginAuthCodeResult(QString authCode)
 {
+    qDebug()<<Q_FUNC_INFO<<"authCode:"<<authCode;
     QJsonDocument doc;
     QJsonObject obj;
     obj.insert("authCode",authCode);

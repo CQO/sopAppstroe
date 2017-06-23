@@ -95,7 +95,7 @@ void SopAuthorControl::_updateAccountInfo(service::ErrorInfo code)
 void SopAuthorControl::getAccountInfo(Account &info)
 {
     m_pUserService->getAccountInfo(info);
-    qDebug()<<Q_FUNC_INFO<<"phone:"<<info.phone.value().c_str()<<",ex:"<<info.extends.value().c_str();
+//    qDebug()<<Q_FUNC_INFO<<"phone:"<<info.phone.value().c_str()<<",ex:"<<info.extends.value().c_str();
 }
 
 int64 SopAuthorControl::userId()
@@ -105,10 +105,12 @@ int64 SopAuthorControl::userId()
 
 void SopAuthorControl::getLoginAuthCode(oauthReq req)
 {
+    qDebug()<<Q_FUNC_INFO<<"code111111:"<<req.appID.c_str()<<",userId:"<<req.userID.c_str();
     m_pAuthorService->getLoginAuthCode(req,std::bind(&SopAuthorControl::_getLoginAuthCode,this,std::placeholders::_1,std::placeholders::_2));
 }
 
 void SopAuthorControl::_getLoginAuthCode(service::ErrorInfo code, const std::string &authCode)
 {
+    qDebug()<<Q_FUNC_INFO<<"code:"<<code<<",authCode:"<<authCode.c_str();
     emit loginAuthCodeResult(QString::fromStdString(authCode));
 }
