@@ -354,13 +354,16 @@ void LinkDoodService::getLoginAuthCode(QString json)
     //    appID：应用ID，
     //    userID：用户ID，
     //    accountType：账号类型
+    //"userID":"110108198512314993"
 
     QJsonObject obj = jsonParce(json);
     qDebug()<<Q_FUNC_INFO<<"jsonsssssssssss:"<<json;
     model::oauthReq req;
+//    req.account = obj.value("userID").toString().toStdString();
+//    req.password = "123456";
     req.userID = QString::number(mpAuthService->userId()).toStdString();
     req.appID = obj.value("appID").toString().toStdString();
-    req.accountType = "7"/*obj.value("accountType").toString().toStdString()*/;
+    req.accountType = "4";
     mpAuthService->getLoginAuthCode(req);
 }
 
