@@ -222,8 +222,6 @@ struct resp_SearchResult : public _sdkrespcmd_base
 		vtub.clear();
 		vtgroup.clear();
 		vtent.clear();
-		vtOrgroup.clear();
-		vtorgUser.clear();
 		vtEntApp.clear();
 	}
 	CMD_SIZE();

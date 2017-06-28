@@ -214,6 +214,7 @@ void SopStoreClinet::onChangedPwdResult(QString json)
 
 void SopStoreClinet::onNoticeLastMsg(QString msgContent)
 {
+    qDebug()<<Q_FUNC_INFO<<"msg:"<<msgContent;
     emit noticeLastMsg(msgContent);
 }
 

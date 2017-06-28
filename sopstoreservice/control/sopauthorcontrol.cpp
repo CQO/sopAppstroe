@@ -7,6 +7,13 @@ SopAuthorControl::SopAuthorControl(QObject *parent) : QObject(parent)
     m_pChatService = CHATSERVICE;
     m_pUserService = USERSERVICE;
     mUserId = 0;
+
+    m_pWorkControl = new AppMsgNoticeThread(this);
+    m_pWorkControl->moveToThread(&mWorkThread);
+    connect(this,SIGNAL(removeNitifications(QString)),m_pWorkControl,SLOT(onRemoveNitification(QString)));
+    connect(this,SIGNAL(bcNotify(QString,QString,QString,QString,QString,QString,QString,QString,int)),m_pWorkControl,SLOT(onBcNotify(QString,QString,QString,QString,QString,QString,QString,QString,int)));
+    mWorkThread.start();
+
     m_pChatService->regMsgNoticeCb(std::bind(&SopAuthorControl::_msgNoticeCb,this,std::placeholders::_1));
     m_pChatService->regRecontactCb(std::bind(&SopAuthorControl::_recontactCb,this,std::placeholders::_1,std::placeholders::_2));
 }
@@ -48,6 +55,7 @@ void SopAuthorControl::_logout(service::ErrorInfo code)
 
 void SopAuthorControl::_msgNoticeCb(std::shared_ptr<Msg> msg)
 {
+    qDebug()<<Q_FUNC_INFO<<"msg:"<<msg->body.c_str();
     QString msgContent;
     if(msg != nullptr){
         if(msg->msgType == MSG_TYPE_TEXT){

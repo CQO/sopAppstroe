@@ -37,14 +37,16 @@ HEADERS += sopstoreservice_workspace.h \
     control/sopstorecontrol.h \
     ../consttype.h \
     control/sopauthorcontrol.h \
-    cdownloadmanger.h
+    cdownloadmanger.h \
+    control/appmsgnoticethread.h
 
 SOURCES += main.cpp \
 	   sopstoreservice_workspace.cpp \
     linkdoodservice.cpp \
     control/sopstorecontrol.cpp \
     control/sopauthorcontrol.cpp \
-    cdownloadmanger.cpp
+    cdownloadmanger.cpp \
+    control/appmsgnoticethread.cpp
 
 target.path = $$INSTALL_DIR/bin
 

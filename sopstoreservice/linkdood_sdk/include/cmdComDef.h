@@ -154,17 +154,6 @@ struct resp_commonResult : public _sdkrespcmd_base
 			INIT_ISSET(nickID)
 			INIT_ISSET(phones)
 			INIT_ISSET(emails)
-#ifdef SDK_FOR_ANDROID
-            name.resize(500);
-            pinyin.resize(500);
-            avatar.resize(500);
-            avatarUrl.resize(500);
-            srcAvatar.resize(500);
-            srcAvatarUrl.resize(500);
-            sign.resize(500);
-            area.resize(500);
-            nickID.resize(500);
-#endif
 		}
 		///性别
 		IS_SET(int, sex)
@@ -252,10 +241,6 @@ struct resp_commonResult : public _sdkrespcmd_base
 		    INIT_ISSET(extend)
 		    INIT_ISSET(entExtend)
 		    INIT_ISSET(info)
-#ifdef SDK_FOR_ANDROID
-            extend.resize(500);
-            entExtend.resize(500);
-#endif
 		}
 		void init() {
 			INIT_ISSET(extend)
@@ -282,13 +267,6 @@ struct resp_commonResult : public _sdkrespcmd_base
 	struct st_buddyBean
 	{
 		st_buddyBean() :page(0), isstar(0) {
-#ifdef SDK_FOR_ANDROID
-            remark.resize(500);
-            remarkPy.resize(500);
-            chatImage.resize(500);
-            srvName.resize(500);
-            privateMsgPwd.resize(500);
-#endif
         }
 
 		int32 page;				    ///< 好友页 page.
@@ -574,13 +552,6 @@ struct resp_commonResult : public _sdkrespcmd_base
         st_msgBean() {
             limitRange.clear();
             relatedUsers.clear();
-#ifdef SDK_FOR_ANDROID
-            message.resize(500);
-            format.resize(500);
-            msgProperties.resize(500);
-            sourceID.resize(500);
-            memberName.resize(500);
-#endif
         }
 
 		int64 sendUserID;     ///< 消息发送人员ID sendUserID.
@@ -667,7 +638,8 @@ struct resp_commonResult : public _sdkrespcmd_base
 	struct st_orgUserinfo
 	{
 		st_orgUserinfo() :
-		userid(0){}
+		userid(0) {
+        }
 
 		int64   userid; 	                        ///< 用户ID      userid.
 		std::string name;                           ///< 用户名称 	 name.
@@ -699,7 +671,8 @@ struct resp_commonResult : public _sdkrespcmd_base
 	{
 		st_orGroupinfo() :
 		groupid(0),
-		orderid(0){}
+		orderid(0) {
+        }
 
 		int64    groupid;
 		int32    orderid;
@@ -1085,24 +1058,6 @@ struct resp_commonResult : public _sdkrespcmd_base
 		st_tinyAppInfo() : appID(0) {
 			configKey.clear();
 			configVal.clear();
-#ifdef SDK_FOR_ANDROID
-            appSign.resize(500);
-            appName.resize(500);
-            appIcon.resize(500);
-            homeUrl.resize(500);
-            entName.resize(500);
-            appSecret.resize(500);
-            appToken.resize(500);
-            appMenus.resize(500);
-            subAccount.resize(500);
-            extend.resize(500);
-            deviceTypes.resize(500);
-            messageHistoryUrl.resize(500);
-            menuOpen.resize(500);
-            replyMenuOpen.resize(500);
-            appFunctintroduce.resize(500);
-            appDescription.resize(500);
-#endif
 		}
 
 		void init() {

@@ -1,8 +1,9 @@
 #ifndef SOPAUTHORCONTROL_H
 #define SOPAUTHORCONTROL_H
-
+#include <QThread>
 #include <QObject>
 #include "servicecontroller.h"
+#include "appmsgnoticethread.h"
 
 class SopAuthorControl : public QObject
 {
@@ -35,8 +36,21 @@ signals:
     void noticeLastMsg(QString msgContent);
     void updateAccountResult(int code);
 
+    void removeNitifications(QString noticeId);
+    void bcNotify(const QString senderId,
+                    const QString msgType,
+                    const QString content,
+                    const QString msgId,
+                    const QString sendTime,
+                    const QString displayName,
+                    const QString senderIconPath,
+                    const QString sessionType,
+                    int unReadNumber);
 public slots:
 private:
+    QThread mWorkThread;
+    AppMsgNoticeThread* m_pWorkControl;
+
     std::shared_ptr<service::IAuthService> m_pAuthorService;
     std::shared_ptr<service::IChatService> m_pChatService;
     std::shared_ptr<service::IUserService> m_pUserService;
