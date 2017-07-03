@@ -56,34 +56,39 @@ void SopAuthorControl::_logout(service::ErrorInfo code)
 void SopAuthorControl::_msgNoticeCb(std::shared_ptr<Msg> msg)
 {
     qDebug()<<Q_FUNC_INFO<<"msg:"<<msg->body.c_str();
-    QString msgContent;
-    if(msg != nullptr){
-        if(msg->msgType == MSG_TYPE_TEXT){
-            msgContent = msg->body.c_str();
-        }else if(msg->msgType == MSG_TYPE_IMG){
-            msgContent = "您收到一条图片消息";
-        }else if(msg->msgType == MSG_TYPE_FILE){
-            msgContent = "您收到一条图文消息";
-        }else if(msg->msgType == MSG_TYPE_PICTEXT){
-            msgContent = "您收到一条图文消息";
-        }else if(msg->msgType == MSG_TYPE_DYNEXPRESSION){
-            msgContent = "您收到一条新消息";
-        }else if(msg->msgType == MSG_TYPE_TIP){
-            msgContent = msg->body.c_str();
-        }else{
-            msgContent = "您收到一条新消息";
-        }
-        emit noticeLastMsg(msgContent);
-    }
+    emit noticeLastMsg(msg->body.c_str());
+
+//    QString msgContent;
+//    if(msg != nullptr){
+//        if(msg->msgType == MSG_TYPE_TEXT){
+//            msgContent = msg->body.c_str();
+//        }else if(msg->msgType == MSG_TYPE_IMG){
+//            msgContent = "您收到一条图片消息";
+//        }else if(msg->msgType == MSG_TYPE_FILE){
+//            msgContent = "您收到一条图文消息";
+//        }else if(msg->msgType == MSG_TYPE_PICTEXT){
+//            msgContent = "您收到一条图文消息";
+//        }else if(msg->msgType == MSG_TYPE_DYNEXPRESSION){
+//            msgContent = "您收到一条新消息";
+//        }else if(msg->msgType == MSG_TYPE_TIP){
+//            msgContent = msg->body.c_str();
+//        }else{
+//            msgContent = "您收到一条新消息";
+//        }
+//        emit noticeLastMsg(msgContent);
+//    }
 }
 
 void SopAuthorControl::_recontactCb(int, std::vector<std::shared_ptr<Chat> > &msgList)
 {
-    if(msgList.size()>0){
-        std::shared_ptr<Chat> chat = msgList.at(msgList.size() -1);
-        if(chat != nullptr){
-            emit noticeLastMsg(chat->lastMsg.c_str());
-        }
+//    if(msgList.size()>0){
+//        std::shared_ptr<Chat> chat = msgList.at(msgList.size() -1);
+//        if(chat != nullptr){
+//            emit noticeLastMsg(chat->lastMsg.c_str());
+//        }
+//    }
+    for(auto i : msgList){
+         emit noticeLastMsg(i->lastMsg.c_str());
     }
 }
 

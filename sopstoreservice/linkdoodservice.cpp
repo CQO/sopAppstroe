@@ -113,7 +113,7 @@ void LinkDoodService::initSdk()
     {
         initControl();
         if(pSrvConfig){
-            pSrvConfig->setMsgParserMode(true);
+            pSrvConfig->setMsgParserMode(false);
 
         }
     }
