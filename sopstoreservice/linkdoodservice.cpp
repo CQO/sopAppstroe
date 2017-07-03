@@ -133,6 +133,7 @@ void LinkDoodService::connectS()
     QObject::connect(mpSopService.get(),SIGNAL(signalsQueryAppStore(model::respAppStore,int)),this,SLOT(onSignalsQueryAppStore(model::respAppStore,int)));
     QObject::connect(mpSopService.get(),SIGNAL(singalqueryEnOS(model::respEnOS,int)),this,SLOT(onSingalqueryEnOS(model::respEnOS,int)));
 
+    QObject::connect(mpAuthService.get(),SIGNAL(noticeLastMsg(QString)),this,SLOT(onNoticeLastMsg(QString)));
     QObject::connect(mpAuthService.get(),SIGNAL(changePasswordResult(int)),this,SLOT(onChangedPwdResult(int)));
     QObject::connect(mpAuthService.get(),SIGNAL(updateAccountResult(int)),this,SLOT(onUpdateAccountInfoResult(int)));
     QObject::connect(mpAuthService.get(),SIGNAL(loginoutResult(int)),this,SLOT(onLoginoutResult(int)));
