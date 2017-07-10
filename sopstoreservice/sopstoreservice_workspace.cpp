@@ -5,7 +5,6 @@
 sopstoreservice_Workspace::sopstoreservice_Workspace()
     : CWorkspace()
 {
-     qDebug()<<Q_FUNC_INFO;
      LinkDoodService::createService();
 }
 

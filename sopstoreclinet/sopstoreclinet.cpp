@@ -234,7 +234,7 @@ void SopStoreClinet::downloadProgress(qint64 bytesReceived, qint64 bytesTotal)
 void SopStoreClinet::downloadApp(QString pkgName, QString url)
 {
     if(!url.startsWith("http")){
-        QString BASE = "http://"+QString::fromStdString(SERVICE_IP)+"/";
+        QString BASE = "http://"+serviceIP()+"/";
         url = BASE + url;
     }
     QString fileName = APP_DIR+pkgName;

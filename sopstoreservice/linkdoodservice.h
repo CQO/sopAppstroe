@@ -13,7 +13,7 @@
 #include <QJsonValue>
 #include <QJsonParseError>
 
-#include "../consttype.h"
+#include "consttype.h"
 #include "servicecontroller.h"
 #include "sopauthorcontrol.h"
 #include "sopstorecontrol.h"

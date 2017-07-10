@@ -35,7 +35,6 @@ HEADERS += sopstoreservice_workspace.h \
     linkdoodservice.h \
     control/servicecontroller.h \
     control/sopstorecontrol.h \
-    ../consttype.h \
     control/sopauthorcontrol.h \
     cdownloadmanger.h \
     control/appmsgnoticethread.h

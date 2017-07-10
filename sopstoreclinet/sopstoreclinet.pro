@@ -17,10 +17,12 @@ DEFINES += SOPSTORECLINET_LIBRARY
 
 QMAKE_LFLAGS += -Wl,-rpath=$$LIB_DIR -Wl,-Bsymbolic
 
-SOURCES += sopstoreclinet.cpp
+SOURCES += sopstoreclinet.cpp \
+    consttype.cpp
 
 HEADERS += sopstoreclinet.h\
-        sopstoreclinet_global.h
+        sopstoreclinet_global.h \
+    consttype.h
 
 unix {
     target.path =  $$INSTALL_DIR/libs/

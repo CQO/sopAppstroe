@@ -3,6 +3,8 @@
 #include "packet.h"
 #include <QNetworkInterface>
 #include <QDir>
+#include "consttype.h"
+
 std::shared_ptr<service::IMClient> g_client;
 LinkDoodService* LinkDoodService::m_pInstance ;
 
@@ -272,7 +274,7 @@ void LinkDoodService::login(QString json)
     QString pwd = obj.value("password").toString();
 
     mCurLoginInforJson = json;
-    mpAuthService->login(uID.toStdString(),pwd.toStdString(),SERVICE_IP);
+    mpAuthService->login(uID.toStdString(),pwd.toStdString(),serviceIP().toStdString());
 }
 
 void LinkDoodService::loginout()
@@ -373,7 +375,7 @@ void LinkDoodService::handleSlidesshow(model::respAppStore response)
 {
     QJsonDocument doc;
     QJsonArray arr;
-    QString BASE = "http://"+QString::fromStdString(SERVICE_IP)+"/";
+    QString BASE = "http://"+serviceIP()+"/";
 
     for(auto i: response.hotNewsBeans){
 
@@ -657,7 +659,7 @@ void LinkDoodService::appInfoBeanToJsonObj(AppInfoBean appinfo, QJsonObject &obj
     obj.insert("packageName",appinfo.packageName.c_str());
     obj.insert("version",appinfo.version.c_str());
     obj.insert("homeUrl",appinfo.homeUrl.c_str());
-    QString BASE = "http://"+QString::fromStdString(SERVICE_IP)+"/";
+    QString BASE = "http://"+serviceIP()+"/";
     obj.insert("icon",BASE+appinfo.icon.c_str());
     obj.insert("downloadUrl",/*BASE+*/appinfo.downloadUrl.c_str());
     obj.insert("name",appinfo.name.c_str());

@@ -8,7 +8,7 @@
 #include <QNetworkRequest>
 #include <QNetworkReply>
 
-#include "../consttype.h"
+#include "consttype.h"
 
 class CDownLoadItem : public QObject{
     Q_OBJECT

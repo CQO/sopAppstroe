@@ -20,7 +20,7 @@
 
 #include <QObject>
 #include <cconfig.h>
-#include "../consttype.h"
+#include "consttype.h"
 
 class  SopStoreClinet : public QObject
 {

@@ -76,7 +76,7 @@ QUrl sopstoreui_Workspace::appUrl()
 sopstoreui_Workspace::sopstoreui_Workspace()
     : CWorkspace()
 {
-
+//serviceIP();
     mNeedNoticeRefreshData = false;
     qmlRegisterType<SopStoreClinet>("com.app.sopApp",1,0,"SopAppClient");
 
